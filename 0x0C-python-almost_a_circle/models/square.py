@@ -1,69 +1,49 @@
 #!/usr/bin/python3
-'''square Module / task 10'''
-
-
-from .rectangle import Rectangle
+'''Module for Square class.'''
+from models.rectangle import Rectangle
 
 
 class Square(Rectangle):
-    '''Square class'''
+    '''A Square class.'''
+
     def __init__(self, size, x=0, y=0, id=None):
-        '''Initialization of the instance'''
+        '''Constructor.'''
         super().__init__(size, size, x, y, id)
 
-    # ********** Getters and Setters Section ***********
+    def __str__(self):
+        '''Returns string info about this square.'''
+        return '[{}] ({}) {}/{} - {}'.\
+            format(type(self).__name__, self.id, self.x, self.y, self.width)
 
     @property
     def size(self):
-        '''retrieves the size => width attribute'''
+        '''Size of this square.'''
         return self.width
 
     @size.setter
     def size(self, value):
-        '''sets the new vale to the size attribute => width and height'''
         self.width = value
         self.height = value
 
-    # ********** End of Getters and Setters Section ****
-
-    # ********** Instance Methods Section **************
+    def __update(self, id=None, size=None, x=None, y=None):
+        '''Internal method that updates instance attributes via */**args.'''
+        if id is not None:
+            self.id = id
+        if size is not None:
+            self.size = size
+        if x is not None:
+            self.x = x
+        if y is not None:
+            self.y = y
 
     def update(self, *args, **kwargs):
-        '''Updates the instance attributes from
-        the arguments passed in a strict order
-        or from the kwargs
-        '''
-        i = 0
-        attributes = ['id', 'size', 'x', 'y']
-        if len(args) > 0:
-            for attr in attributes:
-                if i > len(args) - 1:
-                    break
-                setattr(self, attr, args[i])
-                i += 1
-        else:
-            for key, value in kwargs.items():
-                if key not in attributes:
-                    continue
-                setattr(self, key, value)
+        '''Updates instance attributes via no-keyword & keyword args.'''
+        if args:
+            self.__update(*args)
+        elif kwargs:
+            self.__update(**kwargs)
 
     def to_dictionary(self):
-        '''returns the dictionary representation of the Square instance'''
-        return {
-                'id': self.id,
-                'size': self.size,
-                'x': self.x,
-                'y': self.y
-                }
-
-    # ********** End of Instace Methods Section ********
-
-    # ********** Magic Methods Section *****************
-
-    def __str__(self):
-        '''returns the string representation of the instance'''
-        fh = '[Square] ({:d}) {:d}/{:d}'.format(self.id, self.x, self.y)
-        sh = ' - {:d}'.format(self.width)
-        return fh + sh
-
-    # ********** End of Magic Methods Section **********
+        '''Returns dictionary representation of this class.'''
+        return {"id": self.id, "size": self.width,
+                "x": self.x, "y": self.y}
