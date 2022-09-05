@@ -8,10 +8,10 @@ function factorial (n) {
   return (n * factorial(n - 1));
 }
 
-const args = parseInt(process.argv);
+const args = process.argv;
 
 if (isNaN(args[2])) {
-  console.log('1');
+  console.log(1);
 } else {
   let num = factorial(parseInt(args[2], 10));
   console.log(num);
