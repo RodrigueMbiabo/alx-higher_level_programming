@@ -23,4 +23,4 @@ No known bugs at this time.
 
 | Authors | GitHub 
 | :---: | :---: | :---: | :---: |
-| Rodrigue Mbiaha | [mfcrespo](https://github.com/rodriguembiabo) 
+| Rodrigue Mbiaha | [rodriguembiabo](https://github.com/rodriguembiabo) 
