@@ -1,3 +1,3 @@
 #!/bin/bash
-# Script that makes a request to causes an specific response
-curl -sL 0.0.0.0:5000/catch_me_3 -X PUT -H "Origin:School"
+# display methods
+curl -s -X POST $1 -d @"$2" --header "Content-Type: application/json"
